@@ -1,15 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
-import TextEditor from "./Components/TextEditor/TextEditor";
+// import TextEditor from "./Components/TextEditor/TextEditor";
 import React, { useEffect } from "react";
+import Header from "./Components/Header/Header";
 
 const App = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate("/SignUp");
-  }, []);
-
-  return <Link to="/document">Hello World</Link>;
+  return (
+    <div>
+      <Header />
+      {/* <Link to="/document">Hello World</Link>; */}
+    </div>
+  );
 };
 
 export default App;

@@ -10,7 +10,8 @@ const port = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
-// require("./Controllers");
+app.use(require("./router/authRouter"));
+
 const connectToDB = async () => {
   try {
     mongoose
