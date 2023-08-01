@@ -14,7 +14,7 @@ const TextEditor = () => {
       JSON.parse(localStorage.getItem("content")) || [
         {
           type: "paragraph",
-          children: [{ text: "A line of text in a paragraph." }],
+          children: [{ text: "" }],
         },
       ],
     []
@@ -65,7 +65,7 @@ const TextEditor = () => {
   const [editor] = useState(() => withReact(createEditor()));
   // Render the Slate context.
   return (
-    <div className="m-10 p-5 bg-slate-200">
+    <div className="p-5 ">
       <Slate
         editor={editor}
         initialValue={initialValue}
@@ -80,11 +80,11 @@ const TextEditor = () => {
           }
         }}
       >
-        <div className="bg-slate-800 gap-1 flex mb-5 p-2 rounded">
+        <div className="bg-slate-100 gap-1 flex mb-5 p-2 rounded-[50px]">
           <button
             className={`px-3 py-1 ${
               !NavbarButtons.bold ? "bg-gray-200" : "bg-slate-500 text-white"
-            } rounded`}
+            } rounded-[50px] h-[40px] w-[40px]`}
             onClick={(event) => {
               event.preventDefault();
               setNavbarButtons({ ...NavbarButtons, bold: !NavbarButtons.bold });
@@ -95,7 +95,7 @@ const TextEditor = () => {
           <button
             className={`px-3 py-1 ${
               !NavbarButtons.italic ? "bg-gray-200" : "bg-slate-500 text-white"
-            } rounded`}
+            } rounded-[50px] h-[40px] w-[40px]`}
             onClick={(event) => {
               event.preventDefault();
               setNavbarButtons({
@@ -111,7 +111,7 @@ const TextEditor = () => {
               !NavbarButtons.underline
                 ? "bg-gray-200"
                 : "bg-slate-500 text-white"
-            } rounded underline`}
+            } rounded-[50px] h-[40px] w-[40px] underline`}
             onClick={(event) => {
               event.preventDefault();
               setNavbarButtons({
@@ -124,7 +124,7 @@ const TextEditor = () => {
           </button>
         </div>
 
-        <div className="p-5 bg-gray-200">
+        <div className="p-5 min-h-[90vh] bg-gray-200 rounded-[10px]">
           <Editable
             renderElement={renderElement}
             renderLeaf={renderLeaf}

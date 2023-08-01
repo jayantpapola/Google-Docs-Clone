@@ -11,6 +11,7 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 app.use(require("./router/authRouter"));
+app.use(require("./router/docRouter"));
 
 const connectToDB = async () => {
   try {
