@@ -52,14 +52,14 @@ const Templates = () => {
           templates
         </p>
       </div>
-      <div className=" gap-[10px] grid grid-flow-row grid-cols-6 ">
+      <div className=" gap-[10px] grid grid-flow-row grid-cols-6 overflow-x-auto">
         {templates.map((temp, index) => {
           if (!show && index > 5) {
             return;
           }
           return (
             <div
-              className=" p-[5px]"
+              className=" p-[5px] min-w-[130px]"
               onClick={newDocument}
               key={temp.img + index}
             >

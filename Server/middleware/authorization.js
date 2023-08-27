@@ -9,7 +9,7 @@ const validation = async (req, res, next) => {
       req.user = userExist;
       next();
     } else {
-      res.status(403).json({ Error: "Authorization Failed" });
+      res.status(401).json({ Error: "Authorization Failed" });
     }
   } catch (err) {
     console.log(err);

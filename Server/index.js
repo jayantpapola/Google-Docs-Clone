@@ -1,18 +1,28 @@
 const app = require("express")();
 const express = require("express");
+const cors = require("cors");
+app.use(cors({ origin: "*" }));
 const server = require("http").createServer(app);
-const io = require("socket.io")(server);
+const { Server } = require("socket.io");
+
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 require("dotenv").config();
 const mongoose = require("mongoose");
-const cors = require("cors");
 
 const port = process.env.PORT || 8080;
 
-app.use(cors());
 app.use(express.json());
 app.use(require("./router/authRouter"));
 app.use(require("./router/docRouter"));
 
+app.get("/", (req, res) => {
+  res.send("<b>Jayant</b>: Hi There");
+});
 const connectToDB = async () => {
   try {
     mongoose
@@ -27,12 +37,15 @@ const connectToDB = async () => {
   }
 };
 
-// io.on('connection', (socket) => {
-//   console.log('user connected');
-//   socket.on('disconnect', function () {
-//     console.log('user disconnected');
-//   });
-// })
+io.on("connection", (socket) => {
+  console.log(`User Connected: ${socket.id}`);
+  socket.on("DocContent", (msg) => {
+    socket.broadcast.emit(`Editor-${msg.docId}`, msg.data);
+  });
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+});
 app.get("/", function (req, res) {
   res.send("index.html");
 });
